@@ -1,6 +1,6 @@
 class Recipe < ApplicationRecord
-  has_many :ingredients
-  has_many :steps, -> { order(:position) }
+  has_many :ingredients, dependent: :destroy
+  has_many :steps, -> { order(:position) }, dependent: :destroy
 
   accepts_nested_attributes_for :ingredients, reject_if: :all_blank, allow_destroy: true
   accepts_nested_attributes_for :steps, reject_if: :all_blank, allow_destroy: true

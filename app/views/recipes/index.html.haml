@@ -1,0 +1,20 @@
+%h1 Recipes
+
+%p= link_to 'New Recipe', new_recipe_path
+
+
+- @recipes.each do |recipe|
+  %div[recipe]
+    %h2= link_to recipe.title, recipe
+    %p= recipe.description
+    %span
+      = fa_icon 'clock'
+      = recipe.prep
+    %span
+      = fa_icon 'hourglass-end'
+      = recipe.cook
+    %span
+      = fa_icon 'users'
+      = recipe.servings
+    %span
+      = link_to 'Delete (ajax)', recipe, method: :delete, remote: true, data: { confirm: 'Are you sure?' }
